@@ -76,13 +76,11 @@ function App() {
     }
 
     let lastPage = Math.ceil(filtered.length / pageSize);
-    console.log(filtered, filtered.length);
 
     setFilteredTransactions(filtered);
     setCurrentPage(1);
 
     setLastPage(lastPage > 0 ? lastPage : 1);
-    console.log(lastPage);
   }
 
   return (
@@ -101,18 +99,18 @@ function App() {
             : 0
         }
       ></Account>
-      {
-        filteredTransactions.length > 10 && (
-          <PageControls
-            currentPage={currentPage}
-            lastPage={lastPage}
-            goToNextPage={goToNextPage}
-            goToPrevPage={goToPrevPage}
-          ></PageControls>
-        )
-      }
-      <TransactionsTable transactions={getTransactions()} sNo={((currentPage - 1) * pageSize) + 1}></TransactionsTable>
-
+      <TransactionsTable
+        transactions={getTransactions()}
+        sNo={(currentPage - 1) * pageSize + 1}
+      ></TransactionsTable>
+      {filteredTransactions.length > 10 && (
+        <PageControls
+          currentPage={currentPage}
+          lastPage={lastPage}
+          goToNextPage={goToNextPage}
+          goToPrevPage={goToPrevPage}
+        ></PageControls>
+      )}
     </div>
   );
 }

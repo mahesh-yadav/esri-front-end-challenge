@@ -1,0 +1,71 @@
+.row:nth-child(2n + 2) {
+  background-color: rgba(36, 137, 204, 0.5);
+}
+
+.row:hover {
+  background-color: pink;
+}
+
+.col {
+  padding: 1rem 0.5rem;
+  text-align: center;
+  font-size: 1rem;
+  border-bottom: 1px solid blue;
+}
+
+.col:nth-child(2) {
+  text-align: left;
+}
+
+@media (max-width: 560px) {
+  tr,
+  td {
+    display: block;
+  }
+
+  .row {
+    border: 1px solid blue;
+    margin-bottom: 0.5rem;
+  }
+
+  .col {
+    border: none;
+    border-bottom: 1px solid blue;
+    position: relative;
+    padding-left: 50%;
+    text-align: center;
+  }
+
+  .col:nth-child(2) {
+    text-align: center;
+  }
+
+  .col:before {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+  }
+
+  .col:nth-of-type(1):before {
+    content: 'S.No.';
+  }
+  .col:nth-of-type(2):before {
+    content: 'Date';
+  }
+  .col:nth-of-type(3):before {
+    content: 'Transaction Detail';
+  }
+  .col:nth-of-type(4):before {
+    content: 'Withdrawal';
+  }
+  .col:nth-of-type(5):before {
+    content: 'Deposit';
+  }
+  .col:nth-of-type(6):before {
+    content: 'Balance';
+  }
+}

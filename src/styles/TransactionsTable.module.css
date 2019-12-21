@@ -1,0 +1,44 @@
+.no-data {
+  padding: 1rem;
+  text-align: center;
+}
+
+.transactions-table {
+  border-collapse: collapse;
+  margin: 1rem auto;
+  border: 1px solid blue;
+  width: 100%;
+}
+
+.row-header {
+  color: white;
+  font-weight: bold;
+  background: blue;
+}
+
+.col-header {
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  border: 1px solid blue;
+}
+
+@media (max-width: 560px) {
+  table,
+  thead,
+  tbody,
+  tr,
+  th {
+    display: block;
+  }
+
+  .transactions-table {
+    border: none;
+  }
+
+  .transactions-table > thead {
+    position: absolute;
+    top: -9999px;
+    left: 9999px;
+  }
+}

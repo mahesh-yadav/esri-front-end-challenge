@@ -17,7 +17,6 @@ function Header(props) {
     let value = e.target.innerText;
     props.handleSearch(value);
     setSearchValue('');
-    console.log(e.target.innerText);
   }
 
   return (
