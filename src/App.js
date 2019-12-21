@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import TransactionsTable from './components/TransactionsTable';
 import Account from './components/Account';
 import PageControls from './components/PageControls';
+import Header from './components/Header';
+
 import { fetchTransactionsDetails } from './api';
 
 function App() {
@@ -9,17 +11,29 @@ function App() {
   const [lastPage, setLastPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [transactions, setTransactions] = useState([]);
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const transactions = await fetchTransactionsDetails();
 
       setTransactions(transactions);
-      setLastPage(Math.ceil(transactions.length / pageSize));
+      setFilteredTransactions(transactions);
+      setLastPage(Math.ceil(filteredTransactions.length / pageSize));
       setPageSize(10);
     }
     fetchData();
-  }, [pageSize]);
+  }, []);
+
+  useEffect(() => {
+    setSearchSuggestions([
+      'All',
+      'Indiaforensic SERVICES',
+      'INTERNAL FUND TRANSFE',
+      'INDO GIBL Indiaforensic',
+    ]);
+  }, []);
 
   function goToPrevPage() {
     let prevPage;
@@ -46,12 +60,37 @@ function App() {
 
   function getTransactions() {
     let startIndex = (currentPage - 1) * pageSize;
+    return filteredTransactions.slice(startIndex, startIndex + pageSize);
+  }
 
-    return transactions.slice(startIndex, startIndex + pageSize);
+  function handleSearch(value) {
+    let filtered = [];
+
+    if (value === '' || value === 'All') {
+      filtered = [...transactions];
+    } else {
+      filtered = transactions.filter(
+        (transaction) =>
+          transaction['Transaction Details'].indexOf(value) !== -1
+      );
+    }
+
+    let lastPage = Math.ceil(filtered.length / pageSize);
+    console.log(filtered, filtered.length);
+
+    setFilteredTransactions(filtered);
+    setCurrentPage(1);
+
+    setLastPage(lastPage > 0 ? lastPage : 1);
+    console.log(lastPage);
   }
 
   return (
     <div>
+      <Header
+        searchSuggestions={searchSuggestions}
+        handleSearch={handleSearch}
+      ></Header>
       <Account
         accountNum={
           transactions.length > 0 ? transactions[0]['Account No'] : '----'
@@ -62,13 +101,17 @@ function App() {
             : 0
         }
       ></Account>
-      <PageControls
-        currentPage={currentPage}
-        lastPage={lastPage}
-        goToNextPage={goToNextPage}
-        goToPrevPage={goToPrevPage}
-      ></PageControls>
-      <TransactionsTable transactions={getTransactions()}></TransactionsTable>
+      {
+        getTransactions().length > 0 && (
+          <PageControls
+            currentPage={currentPage}
+            lastPage={lastPage}
+            goToNextPage={goToNextPage}
+            goToPrevPage={goToPrevPage}
+          ></PageControls>
+        )
+      }
+      <TransactionsTable transactions={getTransactions()} sNo={((currentPage - 1) * pageSize) + 1}></TransactionsTable>
     </div>
   );
 }
