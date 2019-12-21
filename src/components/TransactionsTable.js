@@ -10,9 +10,15 @@ function TransactionsTable({ transactions }) {
             <th>S.No.</th>
             <th>Date</th>
             <th>Transaction Detail</th>
-            <th>Withdrawal Amt</th>
-            <th>Deposit Amt</th>
-            <th>Balance Amt</th>
+            <th>
+              Withdrawal Amt ( <i className='fas fa-rupee-sign'></i> )
+            </th>
+            <th>
+              Deposit Amt ( <i className='fas fa-rupee-sign'></i> )
+            </th>
+            <th>
+              Balance Amt ( <i className='fas fa-rupee-sign'></i> )
+            </th>
           </tr>
         </thead>
         <tbody>
