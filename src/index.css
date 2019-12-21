@@ -10,4 +10,12 @@ html {
 
 body {
   font-family: 'Montserrat', sans-serif;
+  margin: 0;
+}
+
+@media (min-width: 1060px) {
+  .main {
+    width: 80%;
+    margin: 0 auto;
+  }
 }

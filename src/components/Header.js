@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from '../styles/Header.module.css';
 
 function Header(props) {
   const [searchValue, setSearchValue] = useState('');
@@ -20,25 +21,27 @@ function Header(props) {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSearch}>
+    <div className={styles['header']}>
+      <form onSubmit={handleSearch} className={styles['form-search']}>
         <input
           onChange={onChangeSearch}
           placeholder='Search by recipient'
           value={searchValue}
         ></input>
       </form>
-      <div>
-        <ul>
-          {props.searchSuggestions.map((value) => {
-            return (
-              <li key={value} onClick={handleSuggestion}>
-                {value}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      {searchValue.length > 0 && (
+        <div className={styles['suggestions']}>
+          <ul>
+            {props.searchSuggestions.map((value) => {
+              return (
+                <li key={value} onClick={handleSuggestion}>
+                  {value}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

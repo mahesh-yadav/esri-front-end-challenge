@@ -71,7 +71,9 @@ function App() {
     } else {
       filtered = transactions.filter(
         (transaction) =>
-          transaction['Transaction Details'].indexOf(value) !== -1
+          transaction['Transaction Details']
+            .toLowerCase()
+            .indexOf(value.toLowerCase()) !== -1
       );
     }
 
@@ -89,28 +91,30 @@ function App() {
         searchSuggestions={searchSuggestions}
         handleSearch={handleSearch}
       ></Header>
-      <Account
-        accountNum={
-          transactions.length > 0 ? transactions[0]['Account No'] : '----'
-        }
-        amount={
-          transactions.length > 0
-            ? transactions[transactions.length - 1]['Balance AMT']
-            : 0
-        }
-      ></Account>
-      <TransactionsTable
-        transactions={getTransactions()}
-        sNo={(currentPage - 1) * pageSize + 1}
-      ></TransactionsTable>
-      {filteredTransactions.length > 10 && (
-        <PageControls
-          currentPage={currentPage}
-          lastPage={lastPage}
-          goToNextPage={goToNextPage}
-          goToPrevPage={goToPrevPage}
-        ></PageControls>
-      )}
+      <div className='main'>
+        <Account
+          accountNum={
+            transactions.length > 0 ? transactions[0]['Account No'] : '----'
+          }
+          amount={
+            transactions.length > 0
+              ? transactions[transactions.length - 1]['Balance AMT']
+              : 0
+          }
+        ></Account>
+        <TransactionsTable
+          transactions={getTransactions()}
+          sNo={(currentPage - 1) * pageSize + 1}
+        ></TransactionsTable>
+        {filteredTransactions.length > 10 && (
+          <PageControls
+            currentPage={currentPage}
+            lastPage={lastPage}
+            goToNextPage={goToNextPage}
+            goToPrevPage={goToPrevPage}
+          ></PageControls>
+        )}
+      </div>
     </div>
   );
 }
