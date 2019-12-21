@@ -1,0 +1,37 @@
+.page-controls{
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+}
+
+.btn {
+    font-size: 1rem;
+    border: 2px solid blue;
+    border-radius: 4px;
+    background: white;
+    color: blue;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+}
+
+.btn:hover,
+.btn:active{
+    color: white;
+    background: blue;
+}
+
+.btn:disabled{
+    color: white;
+    background: gray;
+    border: 2px solid gray;
+}
+
+.btn:focus{
+    outline: none;
+}
+
+@media (min-width: 960px){
+    .page-controls {
+        justify-content: space-around;
+    }
+}

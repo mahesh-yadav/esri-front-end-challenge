@@ -102,7 +102,7 @@ function App() {
         }
       ></Account>
       {
-        getTransactions().length > 0 && (
+        filteredTransactions.length > 10 && (
           <PageControls
             currentPage={currentPage}
             lastPage={lastPage}
@@ -112,6 +112,7 @@ function App() {
         )
       }
       <TransactionsTable transactions={getTransactions()} sNo={((currentPage - 1) * pageSize) + 1}></TransactionsTable>
+
     </div>
   );
 }
