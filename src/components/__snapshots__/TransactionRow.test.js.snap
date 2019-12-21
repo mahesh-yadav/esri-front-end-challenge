@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Product  snapshot 1`] = `
+<tr
+  className="row"
+>
+  <td
+    className="col"
+  >
+    1
+  </td>
+  <td
+    className="col"
+  >
+    29 Jun 17
+  </td>
+  <td
+    className="col"
+  >
+    TRF FROM  Indiaforensic SERVICES
+  </td>
+  <td
+    className="col"
+  >
+    -
+  </td>
+  <td
+    className="col"
+  >
+    -
+  </td>
+  <td
+    className="col"
+  >
+    10,00,000.00
+  </td>
+</tr>
+`;

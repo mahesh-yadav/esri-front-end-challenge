@@ -34,6 +34,9 @@
     ]
   },
   "devDependencies": {
-    "json-server": "^0.15.1"
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "json-server": "^0.15.1",
+    "react-test-render": "^1.1.2"
   }
 }
